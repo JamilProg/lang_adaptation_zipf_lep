@@ -1,0 +1,66 @@
+{
+    "name": "lang_adaptation_zipf_lep",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/current,type=bind",
+    "workspaceFolder": "/workspace/current",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                // Basic formating
+                "editor.formatOnSave": true,
+                "files.trimFinalNewlines": true,
+                "files.trimTrailingWhitespace": true,
+                "files.insertFinalNewline": true,
+                "editor.tabSize": 4,
+                //
+                "files.associations": {
+                    ".env.example": "dotenv",
+                    "*.Dockefile": "dockerfile"
+                },
+                "git.autofetch": "all",
+                "task.autoDetect": "off",
+                "task.allowAutomaticTasks": "off",
+                // Python
+                "python.autoComplete.extraPaths": [
+                    "__pypackages__/3.10/lib"
+                ],
+                "python.analysis.extraPaths": [
+                    "__pypackages__/3.10/lib"
+                ],
+                // Python
+                "[python]": {
+                    "editor.defaultFormatter": "ms-python.black-formatter"
+                },
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": true
+                // "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+                // "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+                // "python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+                // "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+                // "python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+                // "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+                // "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+                // "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+                // "python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+            },
+            "extensions": [
+                // python
+                "ms-python.python",
+                "ms-python.black-formatter",
+                "matangover.mypy",
+                "njqdev.vscode-python-typehint",
+                "knowsuchagency.pdm-task-provider",
+                // qol
+                "bungcip.better-toml",
+                "mrmlnc.vscode-duplicate",
+                "sanaajani.taskrunnercode",
+                "eamodio.gitlens"
+            ]
+        }
+    }
+}

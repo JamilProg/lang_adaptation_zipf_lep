@@ -1,0 +1,33 @@
+[project]
+name = "lang_adaptation_zipf_lep"
+version = "0.0.1"
+description = "Repository for the paper Language adaptation large scale observational study: accuracy is the main driver"
+authors = [
+    {name = "JamilProg", email = "jamil.zaghir@hotmail.com"},
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = [
+    "numpy>=1.24.3",
+    "pandas>=2.0.1",
+    "argparse>=1.4.0",
+    "scipy>=1.9.3",
+    "plotly>=5.14.1",
+    "nltk>=3.8.1",
+    "wordcloud>=1.9.2",
+    "pyenchant>=3.2.2",
+    "networkx>=3.1",
+    "oapackage>=2.7.7",
+]
+
+[tool.pdm.dependencies]
+oapackage = {version = ">=2.7.7", markers = "numpy"}
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
+
+
+[tool.pdm.scripts]
+clean_project = {cmd = "rm -rf __pypackages__ build dist"}
