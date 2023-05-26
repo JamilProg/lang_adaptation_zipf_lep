@@ -4,6 +4,9 @@
 
 import numpy as np
 import oapackage
+import ast
+import os
+import pandas as pd
 
 
 # Find the optimal points as coordinates and the correspondings text
@@ -33,3 +36,31 @@ def compute_pareto_front(x, y, texts):
             if (datapoints[0][i], datapoints[1][i]) in tuples:
                 pareto_labels.append(txt)
     return optimal_datapoints, pareto_labels
+
+def main(input_data: str = os.path.join('.', 'data', 'out_prefixes_ranks.csv'), output_data: str = os.path.join('.', 'data', 'optimum_theorique.csv')):
+    df = pd.read_csv(input_data, sep='\t', encoding="latin-1")
+    optidict = dict()
+    count = 0
+    for i, row in df.iterrows():
+        # pour chaque terme dans excel
+        label = row['LABEL']
+        hugid = row['HUGID']
+        fulllabel = str(hugid) + '_' + label
+        prefixes = ast.literal_eval(row['PREFIXES'])
+        values_j = ast.literal_eval(row['RANKS'])
+        values_k = []
+        for p in prefixes:
+            values_k.append(len(p))
+        pareto_points, pareto_labels = compute_pareto_front(
+            values_k, values_j, prefixes, fulllabel, True)
+        optidict[fulllabel] = (hugid, label, pareto_points, pareto_labels)
+        print(count)
+        count += 1
+    df = pd.DataFrame(
+        columns=["HUGID", "LABEL", "PARETO_OPTI", "PARETO_OPTI_COORD"])
+    for _, (hugid, label, paretop, paretol) in optidict.items():
+        df = df.append({'HUGID': hugid, 'LABEL': label, "PARETO_OPTI": paretol,
+                       "PARETO_OPTI_COORD": paretop}, ignore_index=True)
+    df.to_csv(output_data, sep='\t', encoding='latin-1', index=False)
+
+main()

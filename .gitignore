@@ -9,6 +9,7 @@ venv.bak/
 *.env
 !*.example.env
 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -153,7 +154,6 @@ figures/
 
 # Old_SRC
 src_oldfiles/
-src_dev/
 
 # Force ignore
 *ignoreme*
