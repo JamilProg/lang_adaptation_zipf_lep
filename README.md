@@ -1,4 +1,4 @@
-# Language adaptation and Zipf's Least Effort Principle
+# Language adaptation large scale observation study: accuracy is the main driver
 
 This repository is the implementation code for the paper - Language adaptation large scale observation study: accuracy is the main driver.
 
